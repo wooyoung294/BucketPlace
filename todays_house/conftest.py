@@ -7,7 +7,7 @@ import pytest
 
 
 @pytest.fixture
-def app_session_driver():
+def app_driver():
     app_capabilities = {
         'platformName': 'Android',
         'automationName': 'UiAutomator2',
@@ -21,20 +21,20 @@ def app_session_driver():
     }
 
     appium_server_url = 'http://localhost:4723'
-    app_driver = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(app_capabilities))
+    driver = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(app_capabilities))
 
-    yield app_driver
-    app_driver.quit()
+    yield driver
+    driver.quit()
 
 
 @pytest.fixture(autouse=True)
-def app_function_driver(request, app_session_driver):
-    app_session_driver.start_recording_screen()
+def recorded_app_driver(request, app_driver):
+    app_driver.start_recording_screen()
     try:
-        yield app_session_driver
+        yield app_driver
     finally:
-        app_session_driver.remove_app('net.bucketplace')
-        video_data = base64.b64decode(app_session_driver.stop_recording_screen())
+        app_driver.remove_app('net.bucketplace')
+        video_data = base64.b64decode(app_driver.stop_recording_screen())
 
         allure.attach(video_data, name=f'{request.node.name}', attachment_type=allure.attachment_type.WEBM)
 
