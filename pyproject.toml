@@ -9,9 +9,8 @@ indent-style = "space"
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "W", "PT"]
 
-#[tool.ruff.lint.per-file-ignores]
-#"Fromm/case/test_*.py" = ["PT004","F403", "F405", "I001", "E501"]
-#"Backoffice/case/test_*.py" = ["PT004","F403", "F405", "I001", "E501"]
+[tool.ruff.lint.per-file-ignores]
+"todays_house/case/test_*.py" = ["PT004","F403", "F405", "I001", "E501"]
 
 [tool.ruff.lint.flake8-quotes]
 inline-quotes = "single"
