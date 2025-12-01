@@ -7,7 +7,18 @@ import pytest
 
 
 @pytest.fixture
-def app_driver():
+def app_driver(worker_id):
+    devices_config = [
+        {'udid': 'emulator-5554', 'systemPort': 8200},
+        {'udid': 'emulator-5556', 'systemPort': 8201},
+        {'udid': 'emulator-5558', 'systemPort': 8202},
+    ]
+    if worker_id == 'master':
+        device_info = devices_config[0]
+    else:
+        worker_index = int(worker_id.lstrip('gw'))
+        device_info = devices_config[worker_index % len(devices_config)]
+
     app_capabilities = {
         'platformName': 'Android',
         'automationName': 'UiAutomator2',
@@ -18,6 +29,8 @@ def app_driver():
         'adbExecTimeout': 120000,
         'newCommandTimeout': 10800,
         'skipServerInstallation': False,
+        'udid': device_info['udid'],
+        'systemPort': device_info['systemPort'],
     }
 
     appium_server_url = 'http://localhost:4723'
