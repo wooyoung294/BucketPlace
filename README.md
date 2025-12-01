@@ -1,7 +1,9 @@
 ### 오늘의 집 과제
 
 이 프로젝트는 오늘의집(BucketPlace) 서비스의 마켓 애플리케이션 설치부터 로그인 완료, 메인 페이지 진입 후 앱 설치 버전 확인까지의 시나리오를
-검증하기 위한 Python 기반의 테스트 자동화 프로젝트입니다. Pytest 프레임워크와 Appium을 이용했습니다.
+검증하기 위한 Python 기반의 BDD 형식의 테스트 자동화 프로젝트입니다. Pytest 프레임워크와 Appium을 이용했으며 Allure Report를 이용해 테스트 리포트를 출력 후 Azure StaticWebApp을 이용해 배포 리포트를 배포하였습니다.
+
+#### 리포트 : https://bucketplace.wooyoung.site/
 
 #### TC : https://docs.google.com/spreadsheets/d/1FRAMgWtsoAu7ssuQRfnXZeaDeKHOW6lTFOoQhlH0plc/edit?gid=0#gid=0
 
